@@ -1,6 +1,6 @@
 {
-    "Title":       "Gorbled",
-    "Description": "A simple blog system written by Go, Running in Google App Engine",
+    "Title":       "fanflash's blog",
+    "Description": "A game developer",
 
     "PageSize": 5
 }
