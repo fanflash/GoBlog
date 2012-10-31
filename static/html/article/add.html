@@ -1,10 +1,25 @@
+{{define "HeadHtml"}}
+    <script charset="utf-8" src="/editor/kindeditor.js"></script>
+    <script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
+    <script>
+        var editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('#ArticleEditor');
+        });
+    </script>
+{{end}}
 {{define "content"}}
 <form action="/article?action=manager&operation=add" method="post">
-<div><input type="text" name="title" class="title" placeholder="Article Title" /></div>
-<div><input type="text" name="customid" class="title" placeholder="Custom ID" /></div>
-<div><a href="#" class="btn" onclick="openWindow('/file?action=upload')" >Upload File</a></div>
-<hr />
-<div><textarea name="content" class="content" placeholder="Article Content" ></textarea></div>
-<div><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></div>
+    <div><input type="text" name="title" class="title" placeholder="Article Title" /></div>
+    <div><input type="text" name="customid" class="title" placeholder="Custom ID" /></div>
+    <div><a href="#" class="btn" onclick="openWindow('/file?action=upload')" >Upload File</a></div>
+    <hr />
+    <div>
+        <textarea id="ArticleEditor" name="content" class="content" placeholder="文章内容" ></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Submit" />
+        <input type="reset" value="Reset" />
+    </div>
 </form>
 {{end}}

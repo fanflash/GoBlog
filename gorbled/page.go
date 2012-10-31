@@ -25,8 +25,8 @@ type PageData struct {
 
 const (
     // Folder setting
-    STATIC_FOLDER = "gorbled/static/html/"
-    LAYOUT_FOLDER = "gorbled/static/html/layouts/"
+    STATIC_FOLDER = "static/html/"
+    LAYOUT_FOLDER = "static/html/layouts/"
 
     // Default layout setting
     DEFAULT_LAYOUT = "column2"

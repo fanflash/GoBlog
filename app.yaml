@@ -14,8 +14,12 @@ handlers:
 - url: /img
   static_dir: static/img
 
+- url: /editor
+  static_dir: static/editor
+
 - url: /bdsitemap.txt
   static_files: static/bdsitemap.txt
+  upload: static/bdsitemap.txt
 
 - url: /favicon.ico
   static_files: static/favicon.ico
