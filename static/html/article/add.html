@@ -4,7 +4,11 @@
     <script>
         var editor;
         KindEditor.ready(function(K) {
-            editor = K.create('#ArticleEditor');
+            editor = K.create('#ArticleEditor',{
+                cssPath : '/editor/plugins/code/prettify.css',
+                uploadJson: '{{.PageData.File.PostUrl}}',
+                allowFileManager : false
+            });
         });
     </script>
 {{end}}

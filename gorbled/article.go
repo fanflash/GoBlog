@@ -9,6 +9,7 @@ import (
 
     "appengine"
     "appengine/datastore"
+	"appengine/blobstore"
 )
 
 type ArticleDB struct {
@@ -199,16 +200,34 @@ func articleAdd(w http.ResponseWriter, r *http.Request) {
     if r.Method != "POST" {
         // Show article add page
 
+		//因为编辑器的原因 ，在这里就要知道上传的路径
+		// New FileData
+		fileData := new(FileData)
+
+		// Get upload url
+		uploadURL, err := blobstore.UploadURL(c, "/file?action=uploadProcess", nil)
+
+		if err != nil {
+			serveError(c, w, err)
+			return
+		}
+
+		fileData.PostUrl = uploadURL.String()
+
+
         // New PageSetting
         pageSetting := new(PageSetting)
         pageSetting.Title  = "Article Manager - Add - " + config.Title
         pageSetting.Layout = "column1"
 
+		// New PageData
+		pageData := &PageData{ File: *fileData }
+
         // New Page
-        page := NewPage(pageSetting, nil)
+        page := NewPage(pageSetting, pageData)
 
         // Render page
-        err := page.Render("article/add", w)
+        err = page.Render("article/add", w)
         if err != nil {
             serveError(c, w, err)
             return
